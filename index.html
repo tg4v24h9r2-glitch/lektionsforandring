@@ -1,167 +1,167 @@
 <!DOCTYPE html>
 <html lang="sv" class="h-full">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lektionsförändringar</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Inter Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            nordic: {
-              50: '#f4f7f6',
-              100: '#e3ebe8',
-              500: '#0284c7',
-              600: '#0369a1',
-              900: '#0f172a',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-    }
-    .dark .glass-card {
-      background: rgba(30, 41, 59, 0.85);
-      backdrop-filter: blur(12px);
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektionsförändringar</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            nordic: {
+              50: '#f4f7f6',
+              100: '#e3ebe8',
+              500: '#0284c7',
+              600: '#0369a1',
+              900: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(12px);
+    }
+  </style>
 </head>
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-200">
 
-  <!-- Top Navigation Bar -->
-  <header class="sticky top-0 z-30 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center shadow-md shadow-sky-600/20">
-          <i class="fa-solid font-bold fa-graduation-cap text-lg"></i>
-        </div>
-        <div>
-          <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">Lektionsförändringar</h1>
-          <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5" id="dateDisplay">
-            <i class="fa-regular fa-calendar text-sky-500"></i> <span id="currentDateText">Laddar datum...</span>
-          </p>
-        </div>
-      </div>
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-30 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center shadow-md shadow-sky-600/20">
+          <i class="fa-solid font-bold fa-graduation-cap text-lg"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-white">Lektionsförändringar</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5" id="dateDisplay">
+            <i class="fa-regular fa-calendar text-sky-500"></i> <span id="currentDateText">Laddar datum...</span>
+          </p>
+        </div>
+      </div>
 
-      <div class="flex items-center space-x-2">
-        <!-- Manual Refresh Button -->
-        <button id="refreshBtn" onclick="fetchLessonChanges()" title="Uppdatera" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 transition-all flex items-center justify-center active:scale-95">
-          <i id="refreshIcon" class="fa-solid fa-rotate-right"></i>
-        </button>
+      <div class="flex items-center space-x-2">
+        <!-- Manual Refresh Button -->
+        <button id="refreshBtn" onclick="fetchLessonChanges()" title="Uppdatera" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 transition-all flex items-center justify-center active:scale-95">
+          <i id="refreshIcon" class="fa-solid fa-rotate-right"></i>
+        </button>
 
-        <!-- Dark/Light Theme Toggle -->
-        <button id="themeToggle" onclick="toggleTheme()" title="Växla tema" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 transition-all flex items-center justify-center active:scale-95">
-          <i id="themeIcon" class="fa-solid fa-moon"></i>
-        </button>
-      </div>
-    </div>
-  </header>
+        <!-- Dark/Light Theme Toggle -->
+        <button id="themeToggle" onclick="toggleTheme()" title="Växla tema" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 transition-all flex items-center justify-center active:scale-95">
+          <i id="themeIcon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
 
-  <main class="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 flex-1 flex flex-col gap-6">
+  <main class="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 flex-1 flex flex-col gap-6">
 
-    <!-- Notification / Info Banner -->
-    <div class="bg-sky-50 border border-sky-200 dark:bg-sky-950/40 dark:border-sky-800 rounded-2xl p-4 flex items-start space-x-3">
-      <i class="fa-solid fa-circle-info text-sky-600 dark:text-sky-400 text-lg mt-0.5 shrink-0"></i>
-      <div class="text-xs sm:text-sm text-sky-900 dark:text-sky-200">
-        <span class="font-semibold">Information:</span> Står inte din lektion med här så har ni lektion som vanligt! Listan uppdateras löpande under dagen.
-        <span id="sourceStatus" class="block mt-1 text-[11px] opacity-70">Ansluter till källan...</span>
-      </div>
-    </div>
+    <!-- Notification / Info Banner -->
+    <div class="bg-sky-50 border border-sky-200 dark:bg-sky-950/40 dark:border-sky-800 rounded-2xl p-4 flex items-start space-x-3">
+      <i class="fa-solid fa-circle-info text-sky-600 dark:text-sky-400 text-lg mt-0.5 shrink-0"></i>
+      <div class="text-xs sm:text-sm text-sky-900 dark:text-sky-200">
+        <span class="font-semibold">Information:</span> Står inte din lektion med här så har ni lektion som vanligt! Listan uppdateras löpande under dagen.
+        <span id="sourceStatus" class="block mt-1 text-[11px] opacity-70">Ansluter till källan...</span>
+      </div>
+    </div>
 
-    <!-- Summary Metrics Cards -->
-    <section class="grid grid-cols-3 gap-3 sm:gap-4">
-      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
-        <div class="text-xs font-medium text-slate-500 dark:text-slate-400">Totalt antal</div>
-        <div class="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1" id="statTotal">0</div>
-      </div>
-      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-rose-200/60 dark:border-rose-900/40 shadow-sm flex flex-col justify-between">
-        <div class="text-xs font-medium text-rose-600 dark:text-rose-400">Inställda</div>
-        <div class="text-xl sm:text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-1" id="statCancelled">0</div>
-      </div>
-      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-amber-200/60 dark:border-amber-900/40 shadow-sm flex flex-col justify-between">
-        <div class="text-xs font-medium text-amber-600 dark:text-amber-400">Med vikarie</div>
-        <div class="text-xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400 mt-1" id="statSubstitute">0</div>
-      </div>
-    </section>
+    <!-- Summary Metrics Cards -->
+    <section class="grid grid-cols-3 gap-3 sm:gap-4">
+      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col justify-between">
+        <div class="text-xs font-medium text-slate-500 dark:text-slate-400">Totalt antal</div>
+        <div class="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1" id="statTotal">0</div>
+      </div>
+      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-rose-200/60 dark:border-rose-900/40 shadow-sm flex flex-col justify-between">
+        <div class="text-xs font-medium text-rose-600 dark:text-rose-400">Inställda</div>
+        <div class="text-xl sm:text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-1" id="statCancelled">0</div>
+      </div>
+      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-amber-200/60 dark:border-amber-900/40 shadow-sm flex flex-col justify-between">
+        <div class="text-xs font-medium text-amber-600 dark:text-amber-400">Med vikarie</div>
+        <div class="text-xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400 mt-1" id="statSubstitute">0</div>
+      </div>
+    </section>
 
-    <!-- Controls Section: Search & Filter Tags -->
-    <section class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col gap-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <!-- Search Class -->
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-            <i class="fa-solid fa-users text-sm"></i>
-          </div>
-          <input type="text" id="classSearchInput" oninput="applyFilters()" placeholder="Sök klass (t.ex. 7b4, 9c1)..." value="9c1" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" />
-        </div>
+    <!-- Controls Section: Search & Filter Tags -->
+    <section class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <!-- Search Class -->
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <i class="fa-solid fa-users text-sm"></i>
+          </div>
+          <input type="text" id="classSearchInput" oninput="applyFilters()" placeholder="Sök klass (t.ex. 7b4, 9c1)..." value="9c1" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" />
+        </div>
 
-        <!-- Search Teacher / Subject -->
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-            <i class="fa-solid fa-magnifying-glass text-sm"></i>
-          </div>
-          <input type="text" id="generalSearchInput" oninput="applyFilters()" placeholder="Sök lärare, vikarie eller ämne..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" />
-        </div>
-      </div>
+        <!-- Search Teacher / Subject -->
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+          </div>
+          <input type="text" id="generalSearchInput" oninput="applyFilters()" placeholder="Sök lärare, vikarie eller ämne..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" />
+        </div>
+      </div>
 
-      <!-- Quick Class Filter Tags -->
-      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 pt-1 no-scrollbar text-xs sm:text-sm">
-        <span class="text-slate-400 dark:text-slate-500 font-medium mr-1 text-xs uppercase tracking-wider">Snabbval:</span>
-        <button onclick="setQuickClassFilter('')" class="quick-tag px-3 py-1.5 rounded-lg border font-medium bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition-all">Alla</button>
-        <button onclick="setQuickClassFilter('7b4')" class="quick-tag px-3 py-1.5 rounded-lg border font-medium bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition-all">7b4</button>
-        <button onclick="setQuickClassFilter('9c1')" class="quick-tag px-3 py-1.5 rounded-lg border font-medium bg-sky-600 border-sky-600 text-white transition-all shadow-sm">9c1</button>
-    
-      </div>
-    </section>
+      <!-- Quick Class Filter Tags -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 pt-1 no-scrollbar text-xs sm:text-sm">
+        <span class="text-slate-400 dark:text-slate-500 font-medium mr-1 text-xs uppercase tracking-wider">Snabbval:</span>
+        <button onclick="setQuickClassFilter('')" class="quick-tag px-3 py-1.5 rounded-lg border font-medium bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition-all">Alla</button>
+        <button onclick="setQuickClassFilter('7b4')" class="quick-tag px-3 py-1.5 rounded-lg border font-medium bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition-all">7b4</button>
+        <button onclick="setQuickClassFilter('9c1')" class="quick-tag px-3 py-1.5 rounded-lg border font-medium bg-sky-600 border-sky-600 text-white transition-all shadow-sm">9c1</button>
+    
+      </div>
+    </section>
 
-    <!-- Day / Week view -->
-    <section class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <div class="text-sm font-semibold text-slate-900 dark:text-white">Visning</div>
-          <div class="text-xs text-slate-500 dark:text-slate-400">9C1 visas som standard</div>
-        </div>
-        <div class="flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1">
-          <button id="dayViewBtn" onclick="setViewMode('day')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm">Dag</button>
-          <button id="weekViewBtn" onclick="setViewMode('week')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400">Vecka</button>
-        </div>
-      </div>
-    </section>
+    <!-- Day / Week view -->
+    <section class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div class="text-sm font-semibold text-slate-900 dark:text-white">Visning</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">9C1 visas som standard</div>
+        </div>
+        <div class="flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1">
+          <button id="dayViewBtn" onclick="setViewMode('day')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm">Dag</button>
+          <button id="weekViewBtn" onclick="setViewMode('week')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400">Vecka</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- Lesson Changes List View -->
-    <section class="flex flex-col gap-3" id="changesContainer">
-      <!-- Dynamic Content rendered via JavaScript -->
-    </section>
+    <!-- Lesson Changes List View -->
+    <section class="flex flex-col gap-3" id="changesContainer">
+      <!-- Dynamic Content rendered via JavaScript -->
+    </section>
 
-  </main>
+  </main>
 
-  <!-- Footer -->
-  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-4 text-center text-xs text-slate-400">
-    <p>Synkroniseras direkt mot Google Docs &bull; Elevversion Lektionsförändringar</p>
-  </footer>
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-4 text-center text-xs text-slate-400">
+    <p>Synkroniseras direkt mot Google Docs &bull; Elevversion Lektionsförändringar</p>
+  </footer>
 
-  <script>
-    const DOC_ID = "1NTQFujZqmydffBEJe9xBYHBFDipH95J_zgpdeaTjFQQ";
+  <script>
+    const DOC_ID = "1NTQFujZqmydffBEJe9xBYHBFDipH95J_zgpdeaTjFQQ";
 
 // Google Docs export itself can be blocked by browser CORS.
 // We therefore try direct access first and then a public CORS relay.
@@ -179,345 +179,345 @@ const MOCK_DATA = `Elevversion lektionsförändringar fredag 11 september
 Två saker du har kontroll över i ditt liv: Ditt förhållningssätt och dina handlingar.
 Står inte lektionen med här så har ni lektion som vanligt! Listan uppdateras under dagen om ändringar sker löpande.`;
 
-    let allChanges = [];
-    let isFetching = false;
-    let viewMode = 'day';
+    let allChanges = [];
+    let isFetching = false;
+    let viewMode = 'day';
 
-    // Set today's date in Swedish
-    function updateDateDisplay() {
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const today = new Date().toLocaleDateString('sv-SE', options);
-      document.getElementById('currentDateText').textContent = today.charAt(0).toUpperCase() + today.slice(1);
-    }
+    // Set today's date in Swedish
+    function updateDateDisplay() {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const today = new Date().toLocaleDateString('sv-SE', options);
+      document.getElementById('currentDateText').textContent = today.charAt(0).toUpperCase() + today.slice(1);
+    }
 
-    // Smart Parser for tabular and text lines
-    function parseDocumentText(text) {
-      const lines = text.split(/\r?\n/);
-      const parsedItems = [];
+    // Smart Parser for tabular and text lines
+    function parseDocumentText(text) {
+      const lines = text.split(/\r?\n/);
+      const parsedItems = [];
 
-      lines.forEach(line => {
-        const trimmed = line.trim();
-        // Skip metadata, empty lines, titles, and inspirational text
-        if (!trimmed) return;
-        if (trimmed.toLowerCase().includes("två saker du har kontroll")) return;
-        if (trimmed.toLowerCase().includes("står inte lektionen med här")) return;
-        if (trimmed.toLowerCase().includes("elevversion lektionsförändringar")) return;
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        // Skip metadata, empty lines, titles, and inspirational text
+        if (!trimmed) return;
+        if (trimmed.toLowerCase().includes("två saker du har kontroll")) return;
+        if (trimmed.toLowerCase().includes("står inte lektionen med här")) return;
+        if (trimmed.toLowerCase().includes("elevversion lektionsförändringar")) return;
 
-        // Try splitting by pipe '|' or tab '\t'
-        let parts = trimmed.split(/\||\t/).map(p => p.trim()).filter(Boolean);
+        // Try splitting by pipe '|' or tab '\t'
+        let parts = trimmed.split(/\||\t/).map(p => p.trim()).filter(Boolean);
 
-        if (parts.length >= 2) {
-          let teacher = parts[0] || "-";
-          let time = parts[1] || "-";
-          let klass = parts[2] || "-";
-          let detail = parts[3] || "";
-          let extra = parts[4] || "";
+        if (parts.length >= 2) {
+          let teacher = parts[0] || "-";
+          let time = parts[1] || "-";
+          let klass = parts[2] || "-";
+          let detail = parts[3] || "";
+          let extra = parts[4] || "";
 
-          // Determine Status Category & Badges
-          let fullDetailStr = (detail + " " + extra).trim();
-          let isCancelled = fullDetailStr.toLowerCase().includes("inställd");
-          let hasSubstitute = fullDetailStr.toLowerCase().includes("vikarie") || (detail && !isCancelled);
-          
-          let statusText = fullDetailStr || "Lektionsändring";
-          let substituteName = "";
+          // Determine Status Category & Badges
+          let fullDetailStr = (detail + " " + extra).trim();
+          let isCancelled = fullDetailStr.toLowerCase().includes("inställd");
+          let hasSubstitute = fullDetailStr.toLowerCase().includes("vikarie") || (detail && !isCancelled);
+          
+          let statusText = fullDetailStr || "Lektionsändring";
+          let substituteName = "";
 
-          if (isCancelled) {
-            statusText = "Inställd";
-          } else if (detail.toLowerCase().startsWith("vikarie:")) {
-            substituteName = detail.replace(/vikarie:/i, "").trim();
-            statusText = "Med vikarie";
-          } else if (detail && !isCancelled) {
-            substituteName = detail;
-            statusText = "Vikarie / Förändring";
-          }
+          if (isCancelled) {
+            statusText = "Inställd";
+          } else if (detail.toLowerCase().startsWith("vikarie:")) {
+            substituteName = detail.replace(/vikarie:/i, "").trim();
+            statusText = "Med vikarie";
+          } else if (detail && !isCancelled) {
+            substituteName = detail;
+            statusText = "Vikarie / Förändring";
+          }
 
-          parsedItems.push({
-            id: Math.random().toString(36).substring(2, 9),
-            teacher: teacher,
-            time: time,
-            klass: klass,
-            detail: fullDetailStr,
-            substitute: substituteName,
-            statusText: statusText,
-            isCancelled: isCancelled,
-            hasSubstitute: hasSubstitute && !isCancelled,
-            date: extractDate(trimmed),
-            raw: trimmed
-          });
-        }
-      });
+          parsedItems.push({
+            id: Math.random().toString(36).substring(2, 9),
+            teacher: teacher,
+            time: time,
+            klass: klass,
+            detail: fullDetailStr,
+            substitute: substituteName,
+            statusText: statusText,
+            isCancelled: isCancelled,
+            hasSubstitute: hasSubstitute && !isCancelled,
+            date: extractDate(trimmed),
+            raw: trimmed
+          });
+        }
+      });
 
-      return parsedItems;
-    }
+      return parsedItems;
+    }
 
-    function updateSourceStatus(source) {
-      const el = document.getElementById('sourceStatus');
-      if (!el) return;
-      el.textContent = `Datakälla: ${source}`;
-    }
+    function updateSourceStatus(source) {
+      const el = document.getElementById('sourceStatus');
+      if (!el) return;
+      el.textContent = `Datakälla: ${source}`;
+    }
 
-    // Converts a public iCal feed to the same simple text format used by the parser.
-    function parseICS(ics) {
-      const events = [];
-      const blocks = ics.split(/BEGIN:VEVENT/i).slice(1);
+    // Converts a public iCal feed to the same simple text format used by the parser.
+    function parseICS(ics) {
+      const events = [];
+      const blocks = ics.split(/BEGIN:VEVENT/i).slice(1);
 
-      blocks.forEach(block => {
-        const get = (name) => {
-          const m = block.match(new RegExp(`(?:^|\\n)${name}(?:;[^:]*)?:(.*)`, 'i'));
-          return m ? m[1].trim().replace(/\\n/g, ' ') : '';
-        };
+      blocks.forEach(block => {
+        const get = (name) => {
+          const m = block.match(new RegExp(`(?:^|\\n)${name}(?:;[^:]*)?:(.*)`, 'i'));
+          return m ? m[1].trim().replace(/\\n/g, ' ') : '';
+        };
 
-        const summary = get('SUMMARY');
-        const start = get('DTSTART');
-        const description = get('DESCRIPTION');
+        const summary = get('SUMMARY');
+        const start = get('DTSTART');
+        const description = get('DESCRIPTION');
 
-        if (!summary || !start) return;
+        if (!summary || !start) return;
 
-        const dateMatch = start.match(/(\\d{4})(\\d{2})(\\d{2})T?(\\d{2})?(\\d{2})?/);
-        if (!dateMatch) return;
+        const dateMatch = start.match(/(\\d{4})(\\d{2})(\\d{2})T?(\\d{2})?(\\d{2})?/);
+        if (!dateMatch) return;
 
-        const [, y, mo, d, hh = '00', mm = '00'] = dateMatch;
-        const date = `${y}-${mo}-${d}`;
-        const time = `${hh}:${mm}`;
+        const [, y, mo, d, hh = '00', mm = '00'] = dateMatch;
+        const date = `${y}-${mo}-${d}`;
+        const time = `${hh}:${mm}`;
 
-        // Only include likely lesson-change events for 9C1.
-        const haystack = `${summary} ${description}`.toLowerCase();
-        if (!haystack.includes('9c1')) return;
+        // Only include likely lesson-change events for 9C1.
+        const haystack = `${summary} ${description}`.toLowerCase();
+        if (!haystack.includes('9c1')) return;
 
-        events.push(`- | ${time} | 9C1 | ${summary}${description ? ' – ' + description : ''}`);
-      });
+        events.push(`- | ${time} | 9C1 | ${summary}${description ? ' – ' + description : ''}`);
+      });
 
-      return events.join('\\n');
-    }
+      return events.join('\\n');
+    }
 
-    async function fetchLessonChanges() {
-      if (isFetching) return;
-      isFetching = true;
+    async function fetchLessonChanges() {
+      if (isFetching) return;
+      isFetching = true;
 
-      const refreshIcon = document.getElementById('refreshIcon');
-      refreshIcon.classList.add('fa-spin');
+      const refreshIcon = document.getElementById('refreshIcon');
+      refreshIcon.classList.add('fa-spin');
 
-      try {
-        let textData = "";
-        let source = "";
+      try {
+        let textData = "";
+        let source = "";
 
-        // 1) Try direct Google Docs export.
-        try {
-          const response = await fetch(DOC_URL, { cache: "no-store" });
-          if (!response.ok) throw new Error(`Google Docs svarade ${response.status}`);
-          textData = await response.text();
-          source = "Google Docs";
-        } catch (directErr) {
-          console.warn("Direkt hämtning misslyckades:", directErr);
+        // 1) Try direct Google Docs export.
+        try {
+          const response = await fetch(DOC_URL, { cache: "no-store" });
+          if (!response.ok) throw new Error(`Google Docs svarade ${response.status}`);
+          textData = await response.text();
+          source = "Google Docs";
+        } catch (directErr) {
+          console.warn("Direkt hämtning misslyckades:", directErr);
 
-          // 2) Try CORS relay.
-          try {
-            const response = await fetch(SOURCE_URL, { cache: "no-store" });
-            if (!response.ok) throw new Error(`Proxy svarade ${response.status}`);
-            textData = await response.text();
-            source = "Google Docs via proxy";
-          } catch (proxyErr) {
-            console.warn("Proxy-hämtning misslyckades:", proxyErr);
+          // 2) Try CORS relay.
+          try {
+            const response = await fetch(SOURCE_URL, { cache: "no-store" });
+            if (!response.ok) throw new Error(`Proxy svarade ${response.status}`);
+            textData = await response.text();
+            source = "Google Docs via proxy";
+          } catch (proxyErr) {
+            console.warn("Proxy-hämtning misslyckades:", proxyErr);
 
-            // 3) Optional ICS calendar.
-            if (CALENDAR_ICS_URL) {
-              try {
-                const response = await fetch(CALENDAR_ICS_URL, { cache: "no-store" });
-                if (!response.ok) throw new Error(`Kalender svarade ${response.status}`);
-                const ics = await response.text();
-                textData = parseICS(ics);
-                source = "Google Kalender";
-              } catch (icsErr) {
-                console.warn("Kalenderhämtning misslyckades:", icsErr);
-              }
-            }
-          }
-        }
+            // 3) Optional ICS calendar.
+            if (CALENDAR_ICS_URL) {
+              try {
+                const response = await fetch(CALENDAR_ICS_URL, { cache: "no-store" });
+                if (!response.ok) throw new Error(`Kalender svarade ${response.status}`);
+                const ics = await response.text();
+                textData = parseICS(ics);
+                source = "Google Kalender";
+              } catch (icsErr) {
+                console.warn("Kalenderhämtning misslyckades:", icsErr);
+              }
+            }
+          }
+        }
 
-        allChanges = parseDocumentText(textData || MOCK_DATA);
-        updateSourceStatus(source || "Testdata");
-      } catch (err) {
-        console.error(err);
-        allChanges = parseDocumentText(MOCK_DATA);
-        updateSourceStatus("Testdata");
-      } finally {
-        setTimeout(() => {
-          refreshIcon.classList.remove('fa-spin');
-          isFetching = false;
-        }, 400);
-        applyFilters();
-      }
-    }
+        allChanges = parseDocumentText(textData || MOCK_DATA);
+        updateSourceStatus(source || "Testdata");
+      } catch (err) {
+        console.error(err);
+        allChanges = parseDocumentText(MOCK_DATA);
+        updateSourceStatus("Testdata");
+      } finally {
+        setTimeout(() => {
+          refreshIcon.classList.remove('fa-spin');
+          isFetching = false;
+        }, 400);
+        applyFilters();
+      }
+    }
 
-    function extractDate(text) {
-      const m = text.match(/\\b(20\\d{2})[-/.](\\d{1,2})[-/.](\\d{1,2})\\b/);
-      if (m) return `${m[1]}-${String(m[2]).padStart(2,'0')}-${String(m[3]).padStart(2,'0')}`;
-      return "";
-    }
+    function extractDate(text) {
+      const m = text.match(/\\b(20\\d{2})[-/.](\\d{1,2})[-/.](\\d{1,2})\\b/);
+      if (m) return `${m[1]}-${String(m[2]).padStart(2,'0')}-${String(m[3]).padStart(2,'0')}`;
+      return "";
+    }
 
-    function setViewMode(mode) {
-      viewMode = mode;
-      document.getElementById('dayViewBtn').className =
-        mode === 'day'
-          ? "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm"
-          : "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400";
-      document.getElementById('weekViewBtn').className =
-        mode === 'week'
-          ? "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm"
-          : "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400";
-      applyFilters();
-    }
+    function setViewMode(mode) {
+      viewMode = mode;
+      document.getElementById('dayViewBtn').className =
+        mode === 'day'
+          ? "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm"
+          : "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400";
+      document.getElementById('weekViewBtn').className =
+        mode === 'week'
+          ? "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 shadow-sm"
+          : "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400";
+      applyFilters();
+    }
 
-    function applyFilters() {
-      const classQuery = document.getElementById('classSearchInput').value.toLowerCase().trim();
-      const generalQuery = document.getElementById('generalSearchInput').value.toLowerCase().trim();
+    function applyFilters() {
+      const classQuery = document.getElementById('classSearchInput').value.toLowerCase().trim();
+      const generalQuery = document.getElementById('generalSearchInput').value.toLowerCase().trim();
 
-      const filtered = allChanges.filter(item => {
-        const matchesClass = !classQuery || item.klass.toLowerCase().includes(classQuery);
-        const matchesGeneral = !generalQuery || 
-          item.teacher.toLowerCase().includes(generalQuery) ||
-          item.substitute.toLowerCase().includes(generalQuery) ||
-          item.klass.toLowerCase().includes(generalQuery) ||
-          item.detail.toLowerCase().includes(generalQuery);
+      const filtered = allChanges.filter(item => {
+        const matchesClass = !classQuery || item.klass.toLowerCase().includes(classQuery);
+        const matchesGeneral = !generalQuery || 
+          item.teacher.toLowerCase().includes(generalQuery) ||
+          item.substitute.toLowerCase().includes(generalQuery) ||
+          item.klass.toLowerCase().includes(generalQuery) ||
+          item.detail.toLowerCase().includes(generalQuery);
 
-        const today = new Date();
-        const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+        const today = new Date();
+        const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
 
-        let matchesView = true;
-        if (item.date) {
-          if (viewMode === 'day') {
-            matchesView = item.date === todayKey;
-          } else {
-            const itemDate = new Date(item.date + 'T12:00:00');
-            const day = itemDate.getDay() || 7;
-            const monday = new Date(today);
-            monday.setHours(12,0,0,0);
-            monday.setDate(today.getDate() - day + 1);
-            const sunday = new Date(monday);
-            sunday.setDate(monday.getDate() + 6);
-            matchesView = itemDate >= monday && itemDate <= sunday;
-          }
-        }
+        let matchesView = true;
+        if (item.date) {
+          if (viewMode === 'day') {
+            matchesView = item.date === todayKey;
+          } else {
+            const itemDate = new Date(item.date + 'T12:00:00');
+            const day = itemDate.getDay() || 7;
+            const monday = new Date(today);
+            monday.setHours(12,0,0,0);
+            monday.setDate(today.getDate() - day + 1);
+            const sunday = new Date(monday);
+            sunday.setDate(monday.getDate() + 6);
+            matchesView = itemDate >= monday && itemDate <= sunday;
+          }
+        }
 
-        return matchesClass && matchesGeneral && matchesView;
-      });
+        return matchesClass && matchesGeneral && matchesView;
+      });
 
-      // Update Quick Filter Tags UI active states
-      document.querySelectorAll('.quick-tag').forEach(tag => {
-        const tagText = tag.textContent.trim().toLowerCase();
-        if ((tagText === 'alla' && !classQuery) || tagText === classQuery) {
-          tag.className = "quick-tag px-3 py-1.5 rounded-lg border font-medium bg-sky-600 border-sky-600 text-white transition-all shadow-sm";
-        } else {
-          tag.className = "quick-tag px-3 py-1.5 rounded-lg border font-medium bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition-all";
-        }
-      });
+      // Update Quick Filter Tags UI active states
+      document.querySelectorAll('.quick-tag').forEach(tag => {
+        const tagText = tag.textContent.trim().toLowerCase();
+        if ((tagText === 'alla' && !classQuery) || tagText === classQuery) {
+          tag.className = "quick-tag px-3 py-1.5 rounded-lg border font-medium bg-sky-600 border-sky-600 text-white transition-all shadow-sm";
+        } else {
+          tag.className = "quick-tag px-3 py-1.5 rounded-lg border font-medium bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-sky-500 transition-all";
+        }
+      });
 
-      renderStats(filtered);
-      renderList(filtered);
-    }
+      renderStats(filtered);
+      renderList(filtered);
+    }
 
-    function setQuickClassFilter(className) {
-      document.getElementById('classSearchInput').value = className;
-      applyFilters();
-    }
+    function setQuickClassFilter(className) {
+      document.getElementById('classSearchInput').value = className;
+      applyFilters();
+    }
 
-    function renderStats(items) {
-      document.getElementById('statTotal').textContent = items.length;
-      document.getElementById('statCancelled').textContent = items.filter(i => i.isCancelled).length;
-      document.getElementById('statSubstitute').textContent = items.filter(i => i.hasSubstitute).length;
-    }
+    function renderStats(items) {
+      document.getElementById('statTotal').textContent = items.length;
+      document.getElementById('statCancelled').textContent = items.filter(i => i.isCancelled).length;
+      document.getElementById('statSubstitute').textContent = items.filter(i => i.hasSubstitute).length;
+    }
 
-    function renderList(items) {
-      const container = document.getElementById('changesContainer');
-      container.innerHTML = '';
+    function renderList(items) {
+      const container = document.getElementById('changesContainer');
+      container.innerHTML = '';
 
-      if (items.length === 0) {
-        container.innerHTML = `
-          <div class="glass-card p-8 text-center rounded-2xl border border-slate-200/80 dark:border-slate-700/80 my-4">
-            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
-              <i class="fa-solid fa-check text-xl"></i>
-            </div>
-            <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200">Inga lektionsförändringar hittades</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ni har lektion som vanligt enligt schema för valda kriterier.</p>
-          </div>
-        `;
-        return;
-      }
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="glass-card p-8 text-center rounded-2xl border border-slate-200/80 dark:border-slate-700/80 my-4">
+            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
+              <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200">Inga lektionsförändringar hittades</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ni har lektion som vanligt enligt schema för valda kriterier.</p>
+          </div>
+        `;
+        return;
+      }
 
-      items.forEach(item => {
-        let statusBadge = '';
-        let borderLeftStyle = '';
+      items.forEach(item => {
+        let statusBadge = '';
+        let borderLeftStyle = '';
 
-        if (item.isCancelled) {
-          statusBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-100 text-rose-700 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
-            <i class="fa-solid fa-xmark mr-1"></i> Inställd
-          </span>`;
-          borderLeftStyle = 'border-l-4 border-l-rose-500';
-        } else if (item.hasSubstitute) {
-          statusBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-            <i class="fa-solid fa-user-clock mr-1"></i> ${item.detail}
-          </span>`;
-          borderLeftStyle = 'border-l-4 border-l-amber-500';
-        } else {
-          statusBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-            <i class="fa-solid fa-circle-info mr-1"></i> ${item.detail || 'Ändrad'}
-          </span>`;
-          borderLeftStyle = 'border-l-4 border-l-emerald-500';
-        }
+        if (item.isCancelled) {
+          statusBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-100 text-rose-700 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+            <i class="fa-solid fa-xmark mr-1"></i> Inställd
+          </span>`;
+          borderLeftStyle = 'border-l-4 border-l-rose-500';
+        } else if (item.hasSubstitute) {
+          statusBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+            <i class="fa-solid fa-user-clock mr-1"></i> ${item.detail}
+          </span>`;
+          borderLeftStyle = 'border-l-4 border-l-amber-500';
+        } else {
+          statusBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+            <i class="fa-solid fa-circle-info mr-1"></i> ${item.detail || 'Ändrad'}
+          </span>`;
+          borderLeftStyle = 'border-l-4 border-l-emerald-500';
+        }
 
-        const card = document.createElement('div');
-        card.className = `glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm transition-all hover:shadow-md ${borderLeftStyle}`;
+        const card = document.createElement('div');
+        card.className = `glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm transition-all hover:shadow-md ${borderLeftStyle}`;
 
-        card.innerHTML = `
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="flex items-start space-x-3.5">
-              <div class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-xl text-center shrink-0 min-w-[90px]">
-                <div class="text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">Tid</div>
-                <div class="text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 mt-0.5">${item.time}</div>
-              </div>
-              <div>
-                <div class="flex items-center gap-2 flex-wrap">
-                  <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">${item.klass}</h2>
-                </div>
-                <div class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-0.5 flex items-center gap-2">
-                  <span><i class="fa-solid fa-user-tie text-slate-400 mr-1"></i>Ord. lärare: <strong>${item.teacher}</strong></span>
-                </div>
-              </div>
-            </div>
+        card.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-start space-x-3.5">
+              <div class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-xl text-center shrink-0 min-w-[90px]">
+                <div class="text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">Tid</div>
+                <div class="text-xs sm:text-sm font-bold text-sky-600 dark:text-sky-400 mt-0.5">${item.time}</div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">${item.klass}</h2>
+                </div>
+                <div class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-0.5 flex items-center gap-2">
+                  <span><i class="fa-solid fa-user-tie text-slate-400 mr-1"></i>Ord. lärare: <strong>${item.teacher}</strong></span>
+                </div>
+              </div>
+            </div>
 
-            <div class="flex items-center sm:justify-end mt-2 sm:mt-0">
-              ${statusBadge}
-            </div>
-          </div>
-        `;
+            <div class="flex items-center sm:justify-end mt-2 sm:mt-0">
+              ${statusBadge}
+            </div>
+          </div>
+        `;
 
-        container.appendChild(card);
-      });
-    }
+        container.appendChild(card);
+      });
+    }
 
-    function toggleTheme() {
-      const html = document.documentElement;
-      const themeIcon = document.getElementById('themeIcon');
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        themeIcon.className = 'fa-solid fa-moon';
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.classList.add('dark');
-        themeIcon.className = 'fa-solid fa-sun';
-        localStorage.setItem('theme', 'dark');
-      }
-    }
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('themeIcon');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        themeIcon.className = 'fa-solid fa-moon';
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        themeIcon.className = 'fa-solid fa-sun';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
 
-    // Initialize Theme Preferences & Page Load
-    window.onload = function() {
-      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        document.getElementById('themeIcon').className = 'fa-solid fa-sun';
-      }
-      updateDateDisplay();
-      fetchLessonChanges();
-    };
-  </script>
+    // Initialize Theme Preferences & Page Load
+    window.onload = function() {
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').className = 'fa-solid fa-sun';
+      }
+      updateDateDisplay();
+      fetchLessonChanges();
+    };
+  </script>
 </body>
 </html>
