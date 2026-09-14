@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lektionsförändringar 9C1</title>
+  <title>Lektionsförändringar</title>
   <style>
     :root {
       --bg-color: #0f172a;
@@ -11,147 +11,37 @@
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
       --accent: #38bdf8;
-      --accent-hover: #0284c7;
       --border: #334155;
-      --badge-bg: rgba(56, 189, 248, 0.1);
-      --badge-text: #38bdf8;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); padding: 16px; display: flex; justify-content: center; }
+    .container { width: 100%; max-width: 650px; }
+    
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    h1 { font-size: 1.3rem; }
+    .subtitle { font-size: 0.85rem; color: var(--text-sub); }
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
+    .controls { display: flex; gap: 8px; margin-bottom: 16px; }
+    select, button {
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--text-main); padding: 8px 12px; border-radius: 8px; font-size: 0.9rem;
     }
+    button { background: var(--accent); color: #000; font-weight: 600; cursor: pointer; border: none; }
 
-    .container {
-      width: 100%;
-      max-width: 600px;
-    }
-
-    header {
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-size: 0.875rem;
-      color: var(--text-sub);
-      margin-top: 4px;
-    }
-
-    .controls {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    select, input, button {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    select {
-      cursor: pointer;
-    }
-
-    button {
-      background: var(--accent);
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: background 0.2s;
-    }
-
-    button:hover {
-      background: var(--accent-hover);
-      color: #fff;
-    }
-
-    .card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
+    .card-list { display: flex; flex-direction: column; gap: 10px; }
     .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      background-color: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
     }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
+    .card-header { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 6px; }
+    .time { color: var(--accent); }
+    .details { font-size: 0.85rem; color: var(--text-sub); margin-top: 4px; }
+    .info-box {
+      margin-top: 8px; padding: 8px; background: rgba(0,0,0,0.2);
+      border-radius: 6px; font-size: 0.85rem; color: #e2e8f0;
     }
-
-    .time-badge {
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .subject {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .info-row {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-      margin-top: 4px;
-    }
-
-    .info-row strong {
-      color: var(--text-main);
-    }
-
-    .change-text {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px border var(--border);
-      font-size: 0.9rem;
-      color: #e2e8f0;
-      background: rgba(0,0,0,0.2);
-      padding: 8px 12px;
-      border-radius: 6px;
-    }
-
-    .status {
-      text-align: center;
-      padding: 20px;
-      color: var(--text-sub);
-    }
+    .status { text-align: center; padding: 20px; color: var(--text-sub); }
   </style>
 </head>
 <body>
@@ -160,41 +50,46 @@
     <header>
       <div>
         <h1>Lektionsförändringar</h1>
-        <div class="subtitle" id="doc-date">Läser in information...</div>
+        <div class="subtitle" id="doc-date">Hämtar data...</div>
       </div>
       <button onclick="fetchData()">Uppdatera</button>
     </header>
 
     <div class="controls">
       <select id="classSelect" onchange="renderData()">
-        <option value="9c1" selected>Klass 9C1</option>
+        <option value="ALL">Visa ALLA ändringar</option>
+        <option value="9c1">Klass 9C1</option>
         <option value="7b4">Klass 7B4</option>
-        <option value="ALL">Visa alla klasser</option>
+        <option value="7c5">Klass 7C5</option>
+        <option value="8c1">Klass 8C1</option>
       </select>
     </div>
 
     <div id="content" class="card-list">
-      <div class="status">Hämtar lektionsändringar...</div>
+      <div class="status">Laddar...</div>
     </div>
   </div>
 
   <script>
-    const DOC_URL = "https://docs.google.com/document/d/1NTQFujZqmydffBEJe9xBYHBFDipH95J_zgpdeaTjFQQ/export?format=txt";
+    const DOC_ID = "1NTQFujZqmydffBEJe9xBYHBFDipH95J_zgpdeaTjFQQ";
+    // Proxy för att kringgå CORS-blockering vid lokal körning
+    const PROXY_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://docs.google.com/document/d/${DOC_ID}/export?format=txt`)}`;
+    
     let parsedData = [];
 
     async function fetchData() {
       const container = document.getElementById("content");
-      container.innerHTML = '<div class="status">Hämtar data från Google Docs...</div>';
+      container.innerHTML = '<div class="status">Hämtar lektionsändringar...</div>';
 
       try {
-        const response = await fetch(DOC_URL);
-        if (!response.ok) throw new Error("Kunde inte hämta dokumentet.");
+        const response = await fetch(PROXY_URL);
+        if (!response.ok) throw new Error("Kunde inte nå dokumentet.");
         
         const text = await response.text();
         parseDocument(text);
         renderData();
       } catch (err) {
-        container.innerHTML = `<div class="status" style="color: #ef4444;">Fel vid hämtning: ${err.message}<br><small>Kontrollera att dokumentet är offentligt delat.</small></div>`;
+        container.innerHTML = `<div class="status" style="color: #ef4444;">Fel vid hämtning: ${err.message}</div>`;
       }
     }
 
@@ -202,28 +97,27 @@
       const lines = text.split("\n");
       parsedData = [];
 
-      // Sök efter datum/rubrik
-      const dateLine = lines.find(l => l.toLowerCase().includes("lektionsförändring"));
-      if (dateLine) {
-        document.getElementById("doc-date").innerText = dateLine.trim();
-      } else {
-        document.getElementById("doc-date").innerText = "Senaste ändringarna";
-      }
-
-      // Filtrera tabellrader
       lines.forEach(line => {
-        if (line.includes("|") && !line.includes("---")) {
-          const cols = line.split("|").map(c => c.trim()).filter(c => c !== "");
-          
-          // Hoppa över rubrikraden eller tomma rader
-          if (cols.length >= 3 && !cols[0].toLowerCase().includes("lärare")) {
-            parsedData.push({
-              teacher: cols[0] || "-",
-              time: cols[1] || "-",
-              lesson: cols[2] || "-",
-              substitute: cols[3] || "-",
-              details: cols[4] || ""
-            });
+        if (line.includes("Lektionsförändring")) {
+          document.getElementById("doc-date").innerText = line.trim();
+        }
+
+        if (line.includes("|")) {
+          const cols = line.split("|").map(c => c.trim());
+          // Rensa bort tomma kolumner från tabellens kanter
+          const cleanCols = cols.filter((c, idx) => idx > 0 && idx < cols.length - 1);
+
+          if (cleanCols.length >= 3) {
+            const teacher = cleanCols[0];
+            const time = cleanCols[1];
+            const lesson = cleanCols[2];
+            const substitute = cleanCols[3] || "";
+            const details = cleanCols[4] || "";
+
+            // Ignorera rubrikrader och peppinlägg
+            if (!teacher.toLowerCase().includes("lärare") && !teacher.includes("Två saker")) {
+              parsedData.push({ teacher, time, lesson, substitute, details });
+            }
           }
         }
       });
@@ -239,24 +133,24 @@
       }
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div class="status">Inga lektionsändringar hittades för vald klass.</div>';
+        container.innerHTML = '<div class="status">Inga lektionsändringar hittades.</div>';
         return;
       }
 
       container.innerHTML = filtered.map(item => `
         <div class="card">
           <div class="card-header">
-            <div class="subject">${item.lesson.toUpperCase()}</div>
-            <div class="time-badge">${item.time}</div>
+            <span>${item.lesson.toUpperCase()}</span>
+            <span class="time">${item.time}</span>
           </div>
-          <div class="info-row"><strong>Ordinarie lärare:</strong> ${item.teacher}</div>
-          <div class="info-row"><strong>Vikarie/Ansvarig:</strong> ${item.substitute}</div>
-          ${item.details ? `<div class="change-text"><strong>Information:</strong> ${item.details}</div>` : ''}
+          <div class="details">
+            <strong>Lärare:</strong> ${item.teacher} | <strong>Vikarie/Åtgärd:</strong> ${item.substitute}
+          </div>
+          ${item.details ? `<div class="info-box">${item.details}</div>` : ''}
         </div>
       `).join('');
     }
 
-    // Initial körning
     fetchData();
   </script>
 </body>
